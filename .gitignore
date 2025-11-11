@@ -1,0 +1,40 @@
+# === Carpetas de resultados ===
+output/
+output/*
+
+# === Entornos virtuales de Python ===
+.venv/
+venv/
+env/
+ENV/
+
+# === Archivos de compilación C/C++ ===
+*.o
+*.obj
+*.exe
+*.out
+*.a
+*.so
+*.dll
+
+# === Archivos temporales ===
+*.log
+*.tmp
+*.swp
+*.bak
+*.DS_Store
+
+# === Archivos de depuración ===
+gmon.out
+core
+vgcore.*
+
+# === Archivos de Python auxiliares ===
+__pycache__/
+*.pyc
+*.pyo
+
+# === Archivos de IDEs ===
+.vscode/
+.idea/
+*.code-workspace
