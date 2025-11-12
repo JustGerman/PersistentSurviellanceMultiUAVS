@@ -36,6 +36,7 @@ Grid::Grid(string instancia) {
         grid[r][c].tipo = 'U';
         grid[r][c].urgencia = u;
         histUrgencias[u]++;
+        urgenciaTotalInicial += u;
     }
 
     // Bases

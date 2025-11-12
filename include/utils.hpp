@@ -28,6 +28,7 @@ vector<vector<int>> seleccionarAsignacionesAleatorias(const vector<vector<int>>&
 //     Generación de solución inicial
 // ==============================
 vector<vector<int>> generarSolucionInicial(const Grid& grid, int k, int T, const vector<int>& basesIDs);
+vector<vector<int>> generarSolucionInicialInfactible(const Grid& g, int k, int T, const vector<int>& basesIDs);
 
 // ==============================
 //     Exportación de resultados

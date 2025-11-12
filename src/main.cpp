@@ -67,7 +67,7 @@ int main(int argc, char* argv[]) {
     for (auto& asignacion : subset) {
         tareas.push_back(async(launch::async, [&g, asignacion, k, T, iterMax, tabuTenencia]() {
             TabuSearch ts(g, iterMax, tabuTenencia, k, T, asignacion);
-            auto solInicial = generarSolucionInicial(g, k, T, asignacion);
+            auto solInicial = generarSolucionInicialInfactible(g, k, T, asignacion);
             auto res = ts.ejecutar(solInicial);
             return make_pair(asignacion, res);
         }));
@@ -140,6 +140,18 @@ int main(int argc, char* argv[]) {
     exportarEscenario(g, mejorSolucionGlobal, mejorAsignacion, k, T, "resultado_final");
 
     cout << "Archivos exportados correctamente en carpeta 'output/'.\n";
+    cout << "=========================================================\n";
+
+    // =======================================================
+    //              Verificar factibilidad final
+    // =======================================================
+    bool factible = g.esRutaFactible(mejorAsignacion, mejorSolucionGlobal, T);
+
+    cout << "\n=================== VERIFICACIÓN FINAL ===================\n";
+    if (factible)
+        cout << "✅ La mejor solución encontrada es FACTIBLE.\n";
+    else
+        cout << "⚠️  La mejor solución encontrada es INFACTIBLE.\n";
     cout << "=========================================================\n";
 
     return 0;

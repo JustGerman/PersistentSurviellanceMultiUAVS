@@ -23,6 +23,8 @@ private:
 
     // Lista tabú que guarda hashes de soluciones completas
     deque<size_t> listaTabu;
+    mutable vector<pair<int,int>> posicionesPenalizadas; // (dron, tick)
+
 
     //     Métodos internos
     size_t hashSolucion(const vector<vector<int>>& matriz) const;
@@ -31,6 +33,7 @@ private:
 
     vector<vector<vector<int>>> generarVecinos(const vector<vector<int>>& sol);
     ll funcionEvaluacion(const vector<vector<int>>& sol) const;
+    ll funcionEvaluacionInfactibles(const vector<vector<int>>& sol) const;
 
 public:
     TabuSearch(const Grid& g, int iterMax, int tabuTenencia, int k, int T, const vector<int>& basesIDs);

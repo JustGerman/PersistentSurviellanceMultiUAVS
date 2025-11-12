@@ -127,3 +127,11 @@ void exportarEscenario(const Grid& g, const vector<vector<int>>& mejorSolucionGl
          << nombreArchivo << "_mapa.csv y "
          << nombreArchivo << "_trayectorias.csv\n";
 }
+
+vector<vector<int>> generarSolucionInicialInfactible(const Grid& g, int k, int T, const vector<int>& basesIDs) {
+    vector<vector<int>> rutas(k, vector<int>(T));
+    for (int i = 0; i < k; ++i)
+        for (int t = 0; t < T; ++t)
+            rutas[i][t] = rand() % 9; // movimiento aleatorio entre 0-8
+    return rutas;
+}

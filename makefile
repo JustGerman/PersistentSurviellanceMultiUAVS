@@ -40,7 +40,7 @@ $(OBJ_DIR):
 
 run: $(TARGET)
 	@echo "🚀 Ejecutando ejemplo..."
-	./$(TARGET) instancias/PSP-UAV_01_a.txt 3 100 1000 250
+	./$(TARGET) instancias/PSP-UAV_03_a.txt 5 200 300 30
 
 clean:
 	@echo "🧹 Limpiando compilación..."
