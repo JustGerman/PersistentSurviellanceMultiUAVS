@@ -5,8 +5,8 @@ import matplotlib.animation as animation
 import numpy as np
 
 # === 1. Leer archivos CSV ===
-mapa = pd.read_csv("output/mapa.csv")
-tray = pd.read_csv("output/trayectorias.csv")
+mapa = pd.read_csv("output/resultado_final_mapa.csv")
+tray = pd.read_csv("output/resultado_final_trayectorias.csv")
 
 # === 2. Configurar figura ===
 filas = mapa['fila'].max() + 1

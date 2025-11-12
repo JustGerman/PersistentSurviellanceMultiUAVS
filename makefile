@@ -1,33 +1,51 @@
-# === Proyecto PSP-UAV ===
+# === Proyecto PSP-UAV (versión modular) ===
 
 # Compilador y opciones
 CXX := g++
 CXXFLAGS := -std=c++17 -Wall -O2 -pthread
+INCLUDE := -Iinclude
 
-# Archivos fuente (todos los .cpp del directorio actual)
-SRCS := $(wildcard *.cpp)
-OBJS := $(SRCS:.cpp=.o)
-
-# Nombre del ejecutable
+# Directorios
+SRC_DIR := src
+OBJ_DIR := obj
 TARGET := PSP-UAV
 
-# Regla principal
+# Buscar todos los .cpp dentro de src/
+SRCS := $(wildcard $(SRC_DIR)/*.cpp)
+OBJS := $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
+
+# =========================================
+#                Reglas
+# =========================================
+
 all: $(TARGET)
 
 # Enlazado final
 $(TARGET): $(OBJS)
+	@echo "🔗 Enlazando ejecutable $(TARGET)..."
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-# Compilación de cada .cpp -> .o
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+# Compilar cada .cpp a .o dentro de obj/
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
+	@echo "🧩 Compilando $< ..."
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -c $< -o $@
 
-# Limpiar archivos generados
+# Crear carpeta obj si no existe
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
+
+# =========================================
+#              Reglas útiles
+# =========================================
+
+run: $(TARGET)
+	@echo "🚀 Ejecutando ejemplo..."
+	./$(TARGET) instancias/PSP-UAV_01_a.txt 3 100 1000 250
+
 clean:
-	rm -f $(OBJS) $(TARGET)
+	@echo "🧹 Limpiando compilación..."
+	rm -rf $(OBJ_DIR) $(TARGET)
 
-# Ejecutar ejemplo rápido
-run:
-	./$(TARGET) instancias/PSP-UAV_01_a.txt 3 100 1000 50
+rebuild: clean all
 
-.PHONY: all clean run
+.PHONY: all clean run rebuild
